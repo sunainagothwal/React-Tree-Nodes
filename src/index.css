@@ -1,0 +1,239 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.folders_obj_li {
+  background: #f6fbff;
+  padding: 20px;
+  /*   border-bottom: 1px solid #cce8ff; */
+  position: relative;
+}
+
+.folder_name {
+  background-color: #e5e9e7;
+  padding: 10px;
+  display: block;
+}
+
+.leaf_nodes {
+  padding: 10px;
+  background-color: #f6fbff;
+  display: block;
+  border: 1px solid #ccc;
+}
+
+/*  .folders_array_li:first-child > .leaf_nodes {
+  border-top: 1px solid #ccc;
+} */
+
+.folders_array_ul {
+  margin-top: 10px;
+}
+
+/* .folders_array_li{padding: 10px;
+  border: 1px solid #ccc;
+  border-top: 0;} */
+/* .folders_array_li:first-child{border-top: 1px solid #ccc;} */
+.accordion_icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: url(../public/images/accordion_expand.svg);
+  margin-left: 10px;
+}
+
+.folders_obj_li.active .accordion_icon {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.folders_obj_li.active>.folders_array_ul {
+  display: block;
+}
+
+.folders_obj_li .folders_array_ul {
+  display: none;
+}
+
+.folder_name::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(../public/images/folder_icon.svg) no-repeat center;
+  display: block;
+  background-size: contain;
+  margin-right: 5px;
+  float: left;
+}
+
+.leaf_nodes::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(../public/images/file_icon.svg) no-repeat center;
+  display: block;
+  background-size: contain;
+  margin-right: 5px;
+  float: left;
+}
+
+.delete_icon {
+  width: 20px;
+  height: 20px;
+  background: url(../public/images/delete_icon.svg) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+
+.edit_icon {
+  width: 15px;
+  height: 15px;
+  background: url(../public/images/edit_icon.svg) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+
+.create_folder_icon {
+  width: 20px;
+  height: 20px;
+  background: url(../public/images/create_folder_icon.svg) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+
+.create_file_icon {
+  width: 20px;
+  height: 16px;
+  background: url(../public/images/create_file_icon.svg) no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+
+.action_btns {
+  display: flex;
+  float: right;
+  align-items: center;
+}
+
+/* popup styles */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.popup-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+.popup-actions .confirm-btn,
+.popup-actions .cancel-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.popup-actions .confirm-btn {
+  background-color: #28a745;
+  color: #fff;
+  width: 100px;
+  height: 35px;
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+.popup-actions .cancel-btn {
+  background-color: #dc3545;
+  color: #fff;
+  width: 100px;
+  height: 35px;
+  padding: 10px 20px;
+  font-size: 15px;
+
+}
+
+.popup-actions .confirm-btn:hover {
+  background-color: #218838;
+}
+
+.popup-actions .cancel-btn:hover {
+  background-color: #c82333;
+}
+
+.popup-input {
+  width: 200px;
+  /* height: 30px; */
+  /* line-height: 30px; */
+  padding: 10px 5px;
+  margin: 10px 0px;
+  margin-bottom: 16px;
+  border-radius: 3px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
